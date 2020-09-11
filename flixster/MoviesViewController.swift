@@ -43,15 +43,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let posterURL = URL(string: baseURL + posterPath)   // posterURL is the concatenation of baseURL+posterPath for the overall poster image of the movie cell
         
         cell.posterImage.af.setImage(withURL: posterURL!)   // posterImage is set with the poster URL using AlamofireImage
-        
-        // cell.backgroundColor = UIColor(hex: 0x1F2124, alpha: 1.0)
+
         return cell                                         // movieTitle, movieSynopsis, and posterImage are set for the according movie
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // view.backgroundColor = UIColor(hex: 0x1F2124, alpha: 1.0)
         
         movieTable.dataSource = self
         movieTable.delegate = self
@@ -80,13 +77,23 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         }
         task.resume()
     }
-}
-
-extension UIColor {
-    convenience init(hex: Int, alpha: CGFloat = 1.0){
-        let r = CGFloat( (hex >> 16) & 0x000000ff) / 255
-        let g = CGFloat( (hex >> 8) & 0x000000ff) / 255
-        let b = CGFloat(hex & 0x000000ff) / 255
-        self.init(red: r, green: g, blue: b, alpha: alpha)
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        // cellMovie is the seleted MovieCell
+        let cellMovie = sender as! UITableViewCell
+        
+        // gets the index path of the cellMovie
+        let indexPath = movieTable.indexPath(for: cellMovie)!
+        
+        // selectedMovie is the movie from the index path of movieList
+        let selectedMovie = movieList[indexPath.row]
+        
+        // passes selectedMovie to the detailsViewController
+        let detailsViewController = segue.destination as! MovieDetailsViewController
+        detailsViewController.movie = selectedMovie
+        
+        // the selected movie is no longer highlighted when transitioning to MovieDetailsViewController
+        movieTable.deselectRow(at: indexPath, animated: true)
+        
     }
 }
