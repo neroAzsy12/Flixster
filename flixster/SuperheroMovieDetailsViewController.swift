@@ -17,6 +17,7 @@ class SuperheroMovieDetailsViewController: UIViewController {
     @IBOutlet weak var synopsisLabel: UILabel!
     
     var superheroMovie: [String: Any]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = superheroMovie["title"] as? String
@@ -35,7 +36,17 @@ class SuperheroMovieDetailsViewController: UIViewController {
         
     }
     
-
+    @IBAction func posterIsTapped(_ sender: Any) {
+        performSegue(withIdentifier: "SuperHeroTrailer", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        
+        if segue.identifier == "SuperHeroTrailer" {
+            let movieTrailer = segue.destination as! SuperheroMovieTrailerViewController
+            movieTrailer.movieID = superheroMovie["id"] as! Int
+        }
+    }
     /*
     // MARK: - Navigation
 

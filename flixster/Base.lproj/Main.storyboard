@@ -265,7 +265,11 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="2cc-vS-PcL"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="QX6-nu-I6i" appends="YES" id="sYC-ie-Fft"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="Kw2-7X-f7l"/>
                     <connections>
@@ -273,9 +277,15 @@
                         <outlet property="posterView" destination="Y9s-bF-xKX" id="v19-gO-Tm3"/>
                         <outlet property="synopsisLabel" destination="3k7-P5-6ec" id="DPq-hO-uZR"/>
                         <outlet property="titleLabel" destination="gad-Yy-Jfl" id="mtm-cP-pCr"/>
+                        <segue destination="I3R-6F-3pw" kind="presentation" identifier="SuperHeroTrailer" id="4sA-Ba-L4x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WQu-Up-rSZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="QX6-nu-I6i">
+                    <connections>
+                        <action selector="posterIsTapped:" destination="fGy-lu-Jv9" id="2Gw-Qr-70C"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1566.6666666666667" y="1725"/>
         </scene>
@@ -284,7 +294,7 @@
             <objects>
                 <viewController id="I3R-6F-3pw" customClass="SuperheroMovieTrailerViewController" customModule="flixster" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U7b-Ah-eGn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="PZp-1f-zSc"/>
